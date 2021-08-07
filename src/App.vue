@@ -1,11 +1,13 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-  <div>
-    <h2>{{ $store.state.name }}</h2>
+  <!-- <h2>{{ $store.state.name }}</h2> -->
 
-    <router-link to="/login">login</router-link>
+  <!-- <router-link to="/login">login</router-link>
     <router-link to="/main">main</router-link>
+    <router-view></router-view> -->
+
+  <div class="app">
     <router-view></router-view>
   </div>
 </template>
@@ -23,12 +25,15 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+// #app {
+//   font-family: Avenir, Helvetica, Arial, sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   text-align: center;
+//   color: #2c3e50;
+//   margin-top: 60px;
+// }
+.app {
+  height: 100%;
 }
 </style>

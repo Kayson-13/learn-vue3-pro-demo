@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosResponse} from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface ServiceInterceptors {
   requestInterceptor?: (config: AxiosRequestConfig) => AxiosRequestConfig;
@@ -9,4 +9,5 @@ export interface ServiceInterceptors {
 
 export interface SuperAxiosRequestConfig extends AxiosRequestConfig {
   interceptors?: ServiceInterceptors;
+  showLoading?: boolean;
 }

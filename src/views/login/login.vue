@@ -1,13 +1,26 @@
 <template>
-  <div>login</div>
+  <div class="login">
+    <login-panel />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import LoginPanel from './cpns/login-panel.vue';
 
 export default defineComponent({
-  name: 'login'
+  name: 'login',
+  components: { LoginPanel }
 });
 </script>
 
-<style lang="less"></style>
+<style lang="less" scoped>
+.login {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/img/login-bg.svg');
+}
+</style>

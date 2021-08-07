@@ -1,5 +1,6 @@
 // service统一出口
 import Request from './request';
+import cache from '@/utiis/cache';
 import { BASE_URL, TIME_OUT } from './request/config';
 
 export default new Request({
@@ -8,19 +9,23 @@ export default new Request({
 
   interceptors: {
     requestInterceptor: (config) => {
-      console.log('请求拦截成功');
+      // 某个实例的拦截
+      const token = cache.getCache('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
       return config;
     },
     requestInterceptorCatch: (err) => {
-      console.log('请求拦截失败');
+      // console.log('请求拦截失败');
       return err;
     },
-    responseInterceptor: (config) => {
-      console.log('响应拦截成功');
-      return config;
+    responseInterceptor: (res) => {
+      // console.log('响应拦截成功');
+      return res;
     },
     responseInterceptorCatch: (err) => {
-      console.log('响应拦截失败');
+      // console.log('响应拦截失败');
       return err;
     }
   }
