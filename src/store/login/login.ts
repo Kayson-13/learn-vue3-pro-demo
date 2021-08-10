@@ -1,9 +1,12 @@
 import type { Module } from 'vuex';
+import router from '@/router';
+
 import type { IRootState } from '../type';
 import type { ILoginState } from './type';
 
 import { loginVerifyAccount, getUserInfoById, getUserMenuByRoleId } from '@/api/login/login';
 import cache from '@/utiis/cache';
+import { mapMenusToRoutes } from '@/utiis/map-menus';
 
 export const moduleLogin: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -24,6 +27,11 @@ export const moduleLogin: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, payload) {
       state.userMenus = payload;
+
+      const routes = mapMenusToRoutes(state.userMenus);
+      routes.forEach((route) => {
+        router.addRoute('main', route);
+      });
     }
   },
   actions: {
@@ -46,6 +54,9 @@ export const moduleLogin: Module<ILoginState, IRootState> = {
         const userMenus = userMenusResult.data;
         commit('changeUserMenus', userMenus);
         cache.setCache('userMenus', userMenus);
+
+        // 跳转到首页
+        router.push('main');
       } catch (error) {
         console.log('something wrong:' + error);
       }
