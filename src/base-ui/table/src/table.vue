@@ -1,6 +1,19 @@
 <template>
   <div class="pra-table">
-    <el-table :data="userList" border style="width: 100%">
+    <el-table :data="userList" border style="width: 100%" @selection-change="selectionChange">
+      <el-table-column
+        type="selection"
+        v-if="isShowSelection"
+        align="center"
+        width="60"
+      ></el-table-column>
+      <el-table-column
+        type="index"
+        v-if="isShowIndex"
+        label="序号"
+        align="center"
+        width="60"
+      ></el-table-column>
       <template v-for="propItem in propList" :key="propItem.prop">
         <el-table-column v-bind="propItem" align="center">
           <template #default="scope">
@@ -20,6 +33,14 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'PraTable',
   props: {
+    isShowIndex: {
+      type: Boolean,
+      default: false
+    },
+    isShowSelection: {
+      type: Boolean,
+      default: false
+    },
     propList: {
       type: Array,
       required: true
@@ -29,8 +50,13 @@ export default defineComponent({
       required: true
     }
   },
-  setup() {
-    return {};
+  emits: ['selectionChange'],
+  setup(props, { emit }) {
+    const selectionChange = (data: any) => {
+      emit('selectionChange', data);
+    };
+
+    return { selectionChange };
   }
 });
 </script>

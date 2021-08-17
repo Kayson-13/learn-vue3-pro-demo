@@ -72,7 +72,7 @@ export const moduleLogin: Module<ILoginState, IRootState> = {
         commit('changeUserInfo', userInfo);
       }
       const userMenus = cache.getCache('userMenus');
-      if (userMenus.length > 0) {
+      if (userMenus && userMenus.length > 0) {
         commit('changeUserMenus', userMenus);
       }
     }
