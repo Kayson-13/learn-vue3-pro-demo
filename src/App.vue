@@ -1,25 +1,27 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-  <!-- <h2>{{ $store.state.name }}</h2> -->
-
-  <!-- <router-link to="/login">login</router-link>
-    <router-link to="/main">main</router-link>
-    <router-view></router-view> -->
-
   <div class="app">
-    <router-view></router-view>
+    <el-config-provider :locale="locale">
+      <router-view></router-view>
+    </el-config-provider>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-// import HelloWorld from 'components/HelloWorld.vue';
+
+import { ElConfigProvider } from 'element-plus';
+
+import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 
 export default defineComponent({
   name: 'App',
   components: {
-    // HelloWorld
+    ElConfigProvider
+  },
+  setup() {
+    const locale = zhCn;
+
+    return { locale };
   }
 });
 </script>
